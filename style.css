@@ -35,6 +35,7 @@ body {
 .main-header {
     background-color: var(--primary-color);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Ajout d'une position si besoin, mais conservé tel quel */
     top: 0;
     z-index: 1000;
 }
@@ -43,7 +44,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0 !important; /* On écrase le padding du container pour la nav */
+    padding: 15px 0 !important; 
 }
 
 .logo {
@@ -75,7 +76,7 @@ body {
     color: var(--accent-color);
 }
 
-/* --- Section Intro (Ancien Hero) --- */
+/* --- Section Intro --- */
 .intro-section {
     background-color: var(--primary-color);
     color: var(--text-light);
@@ -103,10 +104,12 @@ body {
     color: var(--accent-color);
 }
 
-.intro-section h2 {
+/* AJUSTÉ : h2 devient .subtitle pour garder le même style */
+.intro-section .subtitle {
     font-weight: 400;
     opacity: 0.9;
     margin-bottom: 15px;
+    font-size: 1.5rem; /* Ajustement pour correspondre à l'ancien h2 */
 }
 
 .intro-section p {
@@ -139,6 +142,7 @@ body {
     background: var(--white); 
 }
 
+/* Le sélecteur .soft-skills fonctionne pour <div> ou <aside> */
 .soft-skills {
     display: flex;
     justify-content: center;
@@ -171,6 +175,7 @@ body {
     gap: 30px;
 }
 
+/* .card fonctionne aussi bien sur <article> que <div> */
 .card {
     user-select: text; 
     background: var(--white);
@@ -178,7 +183,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     text-align: center;
-    transition: translateY 0.3s;
+    transition: transform 0.3s;
 }
 
 .card:hover {
@@ -193,7 +198,8 @@ body {
     object-fit: contain;
 }
 
-.card h2 {
+/* AJUSTÉ : .card h2 devient .card h3 */
+.card h3 {
     font-size: 1.25rem;
     margin-bottom: 15px;
     color: var(--primary-color);
@@ -249,20 +255,17 @@ body {
     justify-content: center;
     width: 60px;
     height: 60px;
-    
     transition: all 0.3s ease;
-
 }
 
 .footer-btn img {
-    width: 100%; /* Taille de tes images/icones */
+    width: 100%; 
     height: 100%;
     object-fit: contain;
 }
 
-/* Effet au survol */
 .footer-btn:hover {
-    background: var(--accent-color); /* Devient orange au survol */
+    background: var(--accent-color);
     transform: translateY(-5px);
     border-color: var(--accent-color);
 }
