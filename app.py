@@ -1,17 +1,25 @@
 import streamlit as st
+import base64
 from pathlib import Path
 
-# Configuration de l'onglet du navigateur
-st.set_page_config(page_title="EliasDev Landing Page", layout="wide")
+def get_base64_image(image_path):
+    # Convertit une image locale en chaîne base64
+    img_bytes = Path(image_path).read_bytes()
+    return base64.b64encode(img_bytes).decode()
 
-# Lecture des fichiers
 def load_site():
-    html_content = Path("index.html").read_text(encoding="utf-8")
-    css_content = Path("style.css").read_text(encoding="utf-8")
+    html = Path("index.html").read_text(encoding="utf-8")
+    css = Path("style.css").read_text(encoding="utf-8")
     
-    # Injection du CSS directement dans le HTML pour Streamlit
-    full_code = f"<style>{css_content}</style>{html_content}"
-    return full_code
+    # On remplace les chemins locaux par les données Base64
+    # Exemple pour l'image de profil
+    img_profile = get_base64_image("Assets/images/Elias.jpg")
+    html = html.replace("Assets/images/Elias.jpg", f"data:image/jpeg;base64,{img_profile}")
+    
+    # Tu peux faire de même pour tes icônes si besoin
+    # ou utiliser des liens URLs pour les logos technos (plus simple)
 
-# Affichage du site dans Streamlit
+    return f"<style>{css}</style>{html}"
+
+st.set_page_config(page_title="EliasDev SaaS", layout="wide")
 st.components.v1.html(load_site(), height=1500, scrolling=True)
